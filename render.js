@@ -1,6 +1,7 @@
 //=============================================================================//
 // --------------------------------- Header ---------------------------------- //
 //=============================================================================//
+//                 Gravitational Wave Events Application                       //
 //                      Created by Kevin Johansmeyer                           //
 //                    Email: kevinjohansmeyer@gmail.com                        //
 //                 University: Montclair State University                      //
@@ -39,11 +40,19 @@ function getInfoText(slction){
     document.getElementById('infoBox').innerHTML = infoBoxArray[txtSelected];
 }
 
+// console.log(GWevents[0].data);
+
+
+
 //=============================================================================//
 // ----------------------------- Update function ----------------------------- //
 //=============================================================================//
 // This entire function updates every time a slider is changed
 function updateFunction(alpha, m1sliderval, m2sliderval) {
+
+    var data = GWevents[0].data;
+    var yRandData = new Float32Array(data);
+    // console.log(yRandData);
 
     //-------------------------------- Constants ------------------------------- //
     const Msun = 0.00000492686088; //mass of the sun using geometric units to get f in Hz
@@ -52,20 +61,7 @@ function updateFunction(alpha, m1sliderval, m2sliderval) {
         m2 = m2sliderval * Msun,
         M = (m1 + m2);
     
-    //-------------------------- Starting Frequency Selection ------------------------- //
-    // Citation: https://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-using-javascript
-    var deviceSelection = document.getElementById("selectDevice");
-    var strDeviceSelection = deviceSelection.options[deviceSelection.selectedIndex].text;
-    console.log(strDeviceSelection);
-
-    // Initial conditions:
-    if (strDeviceSelection == 'Laptop (120 Hz)') {
-        var f0 = 120; //Hertz
-    } else if (strDeviceSelection == 'Headphones (50 Hz)') {
-        var f0 = 50; //Hertz
-    } else if (strDeviceSelection == 'Subwoofer (40 Hz)') {
-        var f0 = 40; //Hertz
-    }
+    var f0 = 120; //Hertz
 
     //----------------------------- Calculations ------------------------------//
     let eta = (m1 * m2) / (M * M), //reduced mass ratio, varies from 0 to 0.25
@@ -169,9 +165,11 @@ function updateFunction(alpha, m1sliderval, m2sliderval) {
         paper_bgcolor: '#181818'
     }
 
+    console.log(h.length);
+    
     let trace0 = {
         x: t,
-        y: h,
+        y: yRandData,
         name: 'Strain vs. Time',
         type: 'scatter',
         line: {
@@ -270,7 +268,7 @@ function updateFunction(alpha, m1sliderval, m2sliderval) {
         }
 
     function playAudio() {
-        startAudio({ array: h, sampleRate });
+        startAudio({ array: yRandData, sampleRate });
     }
 
 } // ----------------------- End of Update Function ---------------------- //
@@ -279,7 +277,6 @@ function updateFunction(alpha, m1sliderval, m2sliderval) {
 const alphaSlider = document.getElementById("alphaSlider");
 const m1slider = document.getElementById("m1slider");
 const m2slider = document.getElementById("m2slider");
-const selectDevice = document.getElementById("selectDevice");
 
 let alpha = Number(alphaSlider.value),
     m1sliderval = Number(m1slider.value),
@@ -303,11 +300,6 @@ m1slider.addEventListener('change', function (event) {
 
 m2slider.addEventListener('change', function (event) {
     m2sliderval = Number(m2slider.value);
-    printVars();
-    updateFunction(alpha, m1sliderval, m2sliderval, deviceSelection);
-})
-
-selectDevice.addEventListener('change', function (event) {
     printVars();
     updateFunction(alpha, m1sliderval, m2sliderval, deviceSelection);
 })
@@ -343,12 +335,3 @@ function toggleFrequencyVsTimePlot() {
 }
 // ------------------ Execute update Function for initial time ------------------ //
 updateFunction(alpha, m1sliderval, m2sliderval, deviceSelection);
-
-/* 
-Things that need to be added or updated:
-- Stop sound when sliders are changed
-- Stop sound when button is pressed again
-- Pick deltat more carefully (based on sliders)
-- Separate images?
-- Check mobile view
-*/

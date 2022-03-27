@@ -2,6 +2,7 @@
 //=============================================================================//
 // --------------------------------- Header ---------------------------------- //
 //=============================================================================//
+//                 Gravitational Wave Events Application                       //
 //                      Created by Kevin Johansmeyer                           //
 //                    Email: kevinjohansmeyer@gmail.com                        //
 //                 University: Montclair State University                      //
@@ -28,6 +29,8 @@
          <meta property="og:url" content="http://soundsofspacetime.org/">
          <meta property="og:image" content="image.png">
      
+         <script src ="GWevents.js"></script>
+
          <link rel="icon" href="favicon.ico">
          <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
          <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -37,6 +40,7 @@
          <!-- Plotly.js (Plotting Library) [Keep in <head>] -->
          <script src ="plotly-latest.min.js"></script> <!-- Refers to local file-->
          <!-- <script src ="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
        </head>
      
        <body>
@@ -44,7 +48,7 @@
            <!-- Text -->
            <div id="main">
              <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
-             <h1>Sounds of Spacetime - Interactive Gravitational Wave Tool</h1>
+             <h1>Sounds of Spacetime - Gravitational Wave Events</h1>
              
              <!-- Citation: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp -->
              <div id="mySidebar" class="sidebar">
@@ -61,15 +65,6 @@
                including the different phases of the signal. We also explore the role of the total mass of the binary and the effect of neglecting the final merger of the two black holes."
              </div><br>
      
-             <!-- Select Device -->
-             <!-- Citation: https://www.w3schools.com/tags/tag_select.asp -->
-             <label for="selectDevice">Select your device:</label>
-             <select name="selectDevice" id="selectDevice"> <!--onchange="getText(this)"> -->
-               <option value="laptop">Laptop (120 Hz)</option>
-               <option value="headphones">Headphones (50 Hz)</option>
-               <option value="subwoofer">Subwoofer (40 Hz)</option>
-             </select>
-     
              <!-- Select Event -->
              <!-- Citation: https://www.codeproject.com/Questions/699630/How-to-display-the-specific-Text-on-change-of-HTML -->
              <label for="selectEvent">Type of Event:</label>
@@ -79,6 +74,11 @@
                <option value="spinningBinaries">Spinning Binaries</option>
                <option value="ellipticalBinaries">Elliptical Binaries</option>     
              </select>
+
+             <label for="selectGWEvent">Event:</label>
+             <select name="selectGWEvent" id="selectGWEvent" onchange="getInfoText(this)">
+               <option value="randData1">randData1</option> <!-- Start with first event in dropdown and Javascript uses loop to add other events --> 
+            </select></br>
          
              <!-- Buttons -->
              <button type="button" class="button" id="startAudioBtn">Play Waveform</button>
