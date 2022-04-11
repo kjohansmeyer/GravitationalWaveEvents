@@ -40,9 +40,15 @@ function getInfoText(slction){
     document.getElementById('infoBox').innerHTML = infoBoxArray[txtSelected];
 }
 
-// console.log(GWevents[0].data);
+console.log(GWevents[0].data);
 
 
+let NFixed = 17708 //number of indices for GW200316
+let tFixed = new Float32Array(NFixed).fill(0); //probably can define with time steps instead of defining with zeros
+tFixed[0] = 0; //fills t array with [0, deltat, 2*deltat, 3*deltat...]
+for (let i = 1; i < NFixed; i++) {
+    tFixed[i] = tFixed[i - 1] + 1/4096;
+}
 
 //=============================================================================//
 // ----------------------------- Update function ----------------------------- //
@@ -168,7 +174,7 @@ function updateFunction(alpha, m1sliderval, m2sliderval) {
     console.log(h.length);
     
     let trace0 = {
-        x: t,
+        x: tFixed,
         y: yRandData,
         name: 'Strain vs. Time',
         type: 'scatter',
