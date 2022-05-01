@@ -10,9 +10,10 @@
 //                        www.soundsofspacetime.org                            //
 //=============================================================================// -->
 
-<!-- Required Packages: 
-     - Plotly.js: https://plotly.com/javascript/ [MIT license]
-     - OscillatorNode: https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/OscillatorNode -->
+<!-- Required Libraries: 
+     - Plotly.js: https://plotly.com/javascript/ [MIT License]
+     - wav.js: https://github.com/taweisse/wavJS [MIT License] -->
+
      <!doctype html>
 
      <html lang="en">
@@ -36,7 +37,10 @@
          <link rel="apple-touch-icon" href="apple-touch-icon.png">
      
          <link rel="stylesheet" href="mystyle.css">
-     
+        
+         <!-- Citation: https://github.com/taweisse/wavJS/blob/main/wav.js -->
+         <script src = "wav.js"></script>
+
          <!-- Plotly.js (Plotting Library) [Keep in <head>] -->
          <script src ="plotly-latest.min.js"></script> <!-- Refers to local file-->
          <!-- <script src ="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
@@ -60,48 +64,36 @@
              </div>
      
              <!-- Information Box -->
-             <div id="infoBox">
+             <!-- <div id="infoBox">
                Basic Binaries Sample Text: "Learn a bit about the gravitational-wave signal from two coalescing black holes,
                including the different phases of the signal. We also explore the role of the total mass of the binary and the effect of neglecting the final merger of the two black holes."
-             </div><br>
+             </div><br> -->
      
              <!-- Select Event -->
              <!-- Citation: https://www.codeproject.com/Questions/699630/How-to-display-the-specific-Text-on-change-of-HTML -->
-             <label for="selectEvent">Type of Event:</label>
+             <!-- <label for="selectEvent">Type of Event:</label>
              <select name="selectEvent" id="selectEvent" onchange="getInfoText(this)">
                <option value="basicBinaries">Basic Binaries</option>
                <option value="circularBinaries">Circular Binaries</option>
                <option value="spinningBinaries">Spinning Binaries</option>
                <option value="ellipticalBinaries">Elliptical Binaries</option>     
-             </select>
+             </select> -->
 
              <label for="selectGWEvent">Event:</label>
-             <select name="selectGWEvent" id="selectGWEvent" onchange="getInfoText(this)">
-               <option value="randData1">randData1</option> <!-- Start with first event in dropdown and Javascript uses loop to add other events --> 
-            </select></br>
+             <select name="selectGWEvent" id="selectGWEvent" onchange="updateFunction(this)"> <!-- not sure if to use updateFunction here -->
+               <option value="GW200316_215756">GW200316_215756</option> <!-- Start with first event in dropdown and Javascript uses loop to add other events -->
+            </select>
          
              <!-- Buttons -->
              <button type="button" class="button" id="startAudioBtn">Play Waveform</button>
-             <button type="button" class="button" onclick="toggleStrainVsTimePlot()">Toggle Strain Plot</button>
-             <button type="button" class="button" onclick="toggleFrequencyVsTimePlot()">Toggle Frequency Plot</button><br><br>
+             <button type="button" class="button" id="downloadAudio">Download Audio</button></br>
      
-             <!-- Adjustable Sliders -->
-             <!-- Inmplement Sean Stopnik's sliders: https://css-tricks.com/value-bubbles-for-range-inputs/ -->
-             <label for="alphaSlider"><b>Alpha (spin precession variable) </b></label>
-             <input type="range" min="0" max="1" value="0" class="slider" step="0.01" id="alphaSlider" oninput="this.nextElementSibling.value = this.value"> 
-             <output>0</output><br>
-     
-             <label for="m1slider"><b>Mass #1 (in terms of solar masses)</b></label>
-             <input type="range" min="1" max="50" value="1.4" class="slider" step="0.1" id="m1slider" oninput="this.nextElementSibling.value = this.value"> 
-             <output>1.4</output><br>
-             
-             <label for="m2slider"><b>Mass #2 (in terms of solar masses)</b></label>
-             <input type="range" min="1" max="50" value="1.4" step="0.1" class="slider" id="m2slider" oninput="this.nextElementSibling.value = this.value"> 
-             <output>1.4</output><br><br>
-     
-             <!-- Draw Plots -->
+             <!-- Draw Plot -->
              <div id="strainVsTimePlot" class="plot"></div><br>
-             <div id="frequencyVsTimePlot" class="plot"></div><br>
+
+             <div id="infoBox">
+               Plots are pre-generated using GWOSC data and a LALSimulation waveform generator. Starting frequency is set to 20 Hz, so beginning of sounds may not be audible on some devices.
+             </div><br>
              
              <!-- Bottom Images -->
              <img src="logo.PNG" class="image" alt="MSU NSF & LSC Logos">
