@@ -207,5 +207,4 @@ function openNav() {
   }
 
 // ------------------ Execute update Function for initial time ------------------ //
-// updateFunction(alpha, m1sliderval, m2sliderval, deviceSelection);
 updateFunction();
