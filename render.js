@@ -67,7 +67,7 @@ for (let i = 1; i < NFixed; i++) {
 // ----------------------------- Update function ----------------------------- //
 //=============================================================================//
 // This entire function updates every time a slider is changed
-function updateFunction() { 
+function updateFunction(normalizedStrainData) { 
 
     //----------------- Importing Data From GWevents.js ------------------- //
     var data = GWevents[selectGWEvent.selectedIndex].data;
