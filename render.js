@@ -56,12 +56,15 @@ function printVars() {
 // }
 
 // // Set up time values
-let NFixed = 17708 //number of indices for GW200316 (f0 = 20 Hz)
+// let NFixed = 17708 //number of indices for GW200316 (f0 = 20 Hz)
+// let NFixed = 59054 //number of indices for GW191219_163120 (f0 = 20 Hz)
+let NFixed = 60000 //number of indices for GW191219_163120 (f0 = 20 Hz)
 let tFixed = new Float32Array(NFixed).fill(0); //probably can define with time steps instead of defining with zeros
 tFixed[0] = 0; //fills t array with [0, deltat, 2*deltat, 3*deltat...]
 for (let i = 1; i < NFixed; i++) {
     tFixed[i] = tFixed[i - 1] + 1/4096;
 }
+console.log({tFixed});
 
 //=============================================================================//
 // ----------------------------- Update function ----------------------------- //
@@ -153,9 +156,9 @@ function updateFunction(normalizedStrainData) {
     
     // Citation: wavJS - https://github.com/taweisse/wavJS
     const sampleRate = 4096;
-    let wav = new WAV(sampleRate,1); //1 = mono, 2 = stereo
 
     function startAudio({ array }) {
+        let wav = new WAV(sampleRate,1); //1 = mono, 2 = stereo
         wav.addSamples([array]);
         wav.play();
 
@@ -173,6 +176,7 @@ function updateFunction(normalizedStrainData) {
     document.getElementById("downloadAudio").onclick = function() {prepareDownload()};
 
     function downloadAudio({ array }) {
+        let wav = new WAV(sampleRate,1); //1 = mono, 2 = stereo
         wav.addSamples([array]);
         wav.download('GWaudio.wav');
     }
