@@ -33,13 +33,6 @@ for(var j = 1; j < GWevents.length; j++) { //j = 1 since j = 0 already in dropdo
 }
 
 //=============================================================================//
-// ------------------------------ Slider Debug ------------------------------- //
-//=============================================================================//
-function printVars() {
-    console.log({alpha}, {m1sliderval}, {m2sliderval});
-}
-
-//=============================================================================//
 // ----------------------------- Information Box ----------------------------- //
 //=============================================================================//
 
@@ -58,13 +51,12 @@ function printVars() {
 // // Set up time values
 // let NFixed = 17708 //number of indices for GW200316 (f0 = 20 Hz)
 // let NFixed = 59054 //number of indices for GW191219_163120 (f0 = 20 Hz)
-let NFixed = 60000 //number of indices for GW191219_163120 (f0 = 20 Hz)
+let NFixed = 60000 //rounded up number of indices for longest event (GW191219_163120 with f0 = 20 Hz)
 let tFixed = new Float32Array(NFixed).fill(0); //probably can define with time steps instead of defining with zeros
 tFixed[0] = 0; //fills t array with [0, deltat, 2*deltat, 3*deltat...]
 for (let i = 1; i < NFixed; i++) {
     tFixed[i] = tFixed[i - 1] + 1/4096;
 }
-console.log({tFixed});
 
 //=============================================================================//
 // ----------------------------- Update function ----------------------------- //
@@ -74,7 +66,9 @@ function updateFunction(normalizedStrainData) {
 
     //----------------- Importing Data From GWevents.js ------------------- //
     var data = GWevents[selectGWEvent.selectedIndex].data;
+    var eventName = GWevents[selectGWEvent.selectedIndex].name;
     var normalizedStrainData = new Float32Array(data);
+    console.log(eventName);
     
     // ----------------------------- Plotting ----------------------------- //
     // ----------------------- Strain vs. Time Plot ----------------------- //
@@ -118,7 +112,7 @@ function updateFunction(normalizedStrainData) {
                 }
             }
         ],
-        margin: {l: 100, r: 50, b: 60, t: 75, pad: 4},
+        margin: {l: 100, r: 50, b: 100, t: 75, pad: 10},
         plot_bgcolor: 'white', //"#383838",
         paper_bgcolor: '#181818'
     }
@@ -164,6 +158,8 @@ function updateFunction(normalizedStrainData) {
 
         // Disables startAudioBtn for duration of sound
         // Citation: https://stackoverflow.com/questions/30558587/javascript-disable-button-and-reenable-it-after-5-seconds
+        let tf = normalizedStrainData.length/sampleRate;
+        console.log({tf});
         document.getElementById("startAudioBtn").disabled = true;
             setTimeout(function(){document.getElementById("startAudioBtn").disabled = false;},1000*tf); //change disable time to reflect each event
         }
@@ -178,7 +174,7 @@ function updateFunction(normalizedStrainData) {
     function downloadAudio({ array }) {
         let wav = new WAV(sampleRate,1); //1 = mono, 2 = stereo
         wav.addSamples([array]);
-        wav.download('GWaudio.wav');
+        wav.download(eventName+'.wav');
     }
     
     function prepareDownload() {
@@ -187,22 +183,10 @@ function updateFunction(normalizedStrainData) {
 
 } // ----------------------- End of Update Function ---------------------- //
 
-// ----------------------------- UI Elements ----------------------------- //
-// const alphaSlider = document.getElementById("alphaSlider");
-// const m1slider = document.getElementById("m1slider");
-// const m2slider = document.getElementById("m2slider");
-
-// let alpha = Number(alphaSlider.value),
-//     m1sliderval = Number(m1slider.value),
-//     m2sliderval = Number(m2slider.value),
-//     deviceSelection = new String("Laptop");
-
-// console.log({ alpha }, { m1sliderval }, { m2sliderval });
-
 // --------------------------- Side Bar Functionality --------------------------- //
 function openNav() {
-    document.getElementById("mySidebar").style.width = "200px";
-    document.getElementById("main").style.marginLeft = "200px";
+    document.getElementById("mySidebar").style.width = "300px";
+    document.getElementById("main").style.marginLeft = "300px";
   }
   
   function closeNav() {

@@ -4,19 +4,19 @@
 h1 {
   color: white;
   text-align: center;
-  font-family: "Lucida Handwriting","Arvo"; /*remove font-families?*/
+  font-family: "Lucida Handwriting","Arvo";
 }
 
 h2 {
   color: white;
   text-align: center;
-  font-family: "Lucida Handwriting","Arial";
+  font-family: "Lucida Handwriting","Arvo";
 }
 
 h3 {
   color: white;
   text-align: center;
-  font-family: "Lucida Handwriting","Arial";
+  font-family: "Lucida Handwriting","Arvo";
 }
 
 body {
@@ -24,41 +24,36 @@ body {
   background-color: #303030;
 }
 
-/* ------------------------------- Slider ------------------------------- */
-/* Citation: https://www.w3schools.com/howto/howto_js_rangeslider.asp */
-
-.slidecontainer {
-  width: 100%;
+/* unvisited link */
+a:link {
+  color: white;
 }
 
-.slider {
-  -webkit-appearance: none;
-  width: 25%;
-  height: 8px;
-  border-radius: 5px;  
-  background: white;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+/* visited link */
+a:visited {
+  color: white;
 }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%; 
-  background: #ff3d3d;
+/* ----------------------------- Dropdown ----------------------------- */
+/* Citation: https://www.w3schools.com/css/css_dropdowns.asp */
+
+.dropdown {
   cursor: pointer;
+  background-color: #212121;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width: 170px;
+  border-radius: 10px;
 }
 
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #04AA6D;
-  cursor: pointer;
+/* Center UI Buttons */
+/* Citation: https://www.w3schools.com/howto/howto_css_image_center.asp */
+.uiButtons {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 /* ------------------------------ Buttons ------------------------------- */
 
@@ -68,14 +63,26 @@ body {
   color: white;
   padding: 10px 15px;
   border: none;
-  width: 125px;
+  width: 170px;
+  border-radius: 10px;
 }
 
 .button:hover {
   color: black;
   background-color: white;
   transition: 0.2s;
+  border-radius: 10px;
 }
+
+/* Center UI Buttons */
+/* Citation: https://www.w3schools.com/howto/howto_css_image_center.asp */
+.uiButtons {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 /* ------------------------------ Text Box ------------------------------ */
 #infoBox {
   border: 1px solid white;
@@ -99,6 +106,7 @@ body {
 /* ------------------------------ Side Bar ------------------------------- */
 /* Citation: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
 
+
 .sidebar {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
@@ -109,7 +117,7 @@ body {
   background-color: #181818;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.4s; /* 0.5 second transition effect to slide in the sidebar */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
 /* The sidebar links */
@@ -140,6 +148,7 @@ body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
+  border-radius: 10px;
   background-color: #212121;
   color: white;
   padding: 10px 15px;
@@ -170,8 +179,8 @@ body {
   height: 20px; 
   position: fixed; 
   bottom:0%;
-  width:100%;
+  width:110%;
   background-color: #181818; 
   opacity: 1;
-  margin-left:-1.5%; /* removes indent */
+  margin-left:-5%; /* removes indent */
 }
