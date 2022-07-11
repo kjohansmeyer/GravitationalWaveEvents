@@ -52,13 +52,64 @@ function updateFunction(normalizedStrainData) {
     //----------------- Importing Data From GWevents.js ------------------- //
     var data = GWevents[selectGWEvent.selectedIndex].data;
     var eventName = GWevents[selectGWEvent.selectedIndex].name;
-    var eventURL = GWevents[selectGWEvent.selectedIndex].url;
     var normalizedStrainData = new Float32Array(data);
     console.log({eventName});
     
     // ------------------------ Information Box ------------------------ //
+    // Mass #1:
+    var mass1 = GWevents[selectGWEvent.selectedIndex].mass1;
+    document.getElementById('mass1').innerHTML = mass1;
+
+    var spin1x = GWevents[selectGWEvent.selectedIndex].spin1x;
+    document.getElementById('spin1x').innerHTML = spin1x;
+
+    var spin1y = GWevents[selectGWEvent.selectedIndex].spin1y;
+    document.getElementById('spin1y').innerHTML = spin1y;
+
+    var spin1z = GWevents[selectGWEvent.selectedIndex].spin1z;
+    document.getElementById('spin1z').innerHTML = spin1z;
+
+    // Mass #2:
+    var mass2 = GWevents[selectGWEvent.selectedIndex].mass2;
+    document.getElementById('mass2').innerHTML = mass2;
+
+    var spin2x = GWevents[selectGWEvent.selectedIndex].spin2x;
+    document.getElementById('spin2x').innerHTML = spin2x;
+
+    var spin2y = GWevents[selectGWEvent.selectedIndex].spin2y;
+    document.getElementById('spin2y').innerHTML = spin2y;
+
+    var spin2z = GWevents[selectGWEvent.selectedIndex].spin2z;
+    document.getElementById('spin2z').innerHTML = spin2z;
+
+    // Other Parameters:
+    var rightAscension = GWevents[selectGWEvent.selectedIndex].rightAscension;
+    document.getElementById('rightAscension').innerHTML = rightAscension;
+
+    var declination = GWevents[selectGWEvent.selectedIndex].declination;
+    document.getElementById('declination').innerHTML = declination;
+
+    var inclination = GWevents[selectGWEvent.selectedIndex].inclination;
+    document.getElementById('inclination').innerHTML = inclination;
+
+    var psi = GWevents[selectGWEvent.selectedIndex].psi;
+    document.getElementById('psi').innerHTML = psi;
+
+    var luminosityDistance = GWevents[selectGWEvent.selectedIndex].luminosityDistance;
+    document.getElementById('luminosityDistance').innerHTML = luminosityDistance;
+
+    var chi_eff = GWevents[selectGWEvent.selectedIndex].chi_eff;
+    document.getElementById('chi_eff').innerHTML = chi_eff;
+
+    var totalMass = GWevents[selectGWEvent.selectedIndex].totalMass;
+    document.getElementById('totalMass').innerHTML = totalMass;
+
+    var geocentricGPSTime = GWevents[selectGWEvent.selectedIndex].geocentricGPSTime;
+    document.getElementById('geocentricGPSTime').innerHTML = geocentricGPSTime;
+
+    // Event URL:
+    var eventURL = GWevents[selectGWEvent.selectedIndex].url;
     document.getElementById('infoURL').href = eventURL;
-    console.log({eventURL});
 
     // ----------------------------- Plotting ----------------------------- //
     // ----------------------- Strain vs. Time Plot ----------------------- //

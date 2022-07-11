@@ -93,12 +93,35 @@
     <!-- Draw Plot -->
     <div id="strainVsTimePlot" class="plot"></div><br>
 
+    <!-- Information Box -->
     <div id="infoBox" class="infoBox">
+      <!-- Mass #1: -->
+      <b><u>Mass #1</u>:</b> <div id="mass1"></div></br>
+      <b><u>Spin 1x</u>:</b> <div id="spin1x"></div></br>
+      <b><u>Spin 1y</u>:</b> <div id="spin1y"></div></br>
+      <b><u>Spin 1z</u>:</b> <div id="spin1z"></div></br>
+
+      <!-- Mass #2: -->
+      <b><u>Mass #2</u>:</b> <div id="mass2"></div></br>
+      <b><u>Spin 2x</u>:</b> <div id="spin2x"></div></br>
+      <b><u>Spin 2y</u>:</b> <div id="spin2y"></div></br>
+      <b><u>Spin 2z</u>:</b> <div id="spin2z"></div></br>
+      
+      <!-- Other Parameters:-->
+      <b><u>Right Ascension</u>:</b> <div id="rightAscension"></div></br>
+      <b><u>Declination</u>:</b> <div id="declination"></div></br>
+      <b><u>Inclination</u>:</b> <div id="inclination"></div></br>
+      <b><u>Psi</u>:</b> <div id="psi"></div></br>
+      <b><u>Luminosity Distance</u>:</b> <div id="luminosityDistance"></div></br>
+      <b><u>Chi Effective</u>:</b> <div id="chi_eff"></div></br>
+      <b><u>Total Mass</u>:</b> <div id="totalMass"></div></br>
+      <b><u>Geocentric GPS Time</u>:</b> <div id="geocentricGPSTime"></div></br>
+
       <a href="https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1" id="infoURL" target="_blank">Click for more information about this event</a>
-      <!-- <div id="infoURL">https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1</div> -->
     </div><br>
 
-    <div id="descriptionBox" class="infoBox">
+    <!-- Description Box -->
+    <div id="descriptionBox">
       Plots are pre-generated in Python and exported to JavaScript. Parameter values corresponding to highest log_likelihood of posterior samples from <a href="https://www.gw-openscience.org/eventapi/html/allevents/" target="_blank">The Gravitational Wave 
       Open Science Center (GWOSC)</a> were used. <a href="https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/_l_a_l_sim_inspiral_8h.html#a51352d49a58e543e07ebb6be87fc80e7" target="_blank">LALSimulation's 
       XLALSimInspiralChooseTDWaveform() waveform generator</a>. The starting frequency for each event is set to 20 Hz, so the beginning of sounds may not be audible on some devices.

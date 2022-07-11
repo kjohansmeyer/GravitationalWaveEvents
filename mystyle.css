@@ -116,13 +116,35 @@ a:visited {
   background-color: #444;
 }
 
-/* ------------------------------ Text Box ------------------------------ */
+/* ------------------------------ Info Box ------------------------------ */
 .infoBox {
-  border: 1px solid white;
-  text-align: center;
+  border: 3px solid white;
+  /* text-align: center; */
   background-color: #3d3d3d;
+  display: inline-block;
+  column-width: 250px;
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 
+#descriptionBox {
+  border: 3px solid white;
+  text-align: center;
+  background-color: #3d3d3d;
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+/* Parameters */
+#mass1, #spin1x, #spin1y, #spin1z, #mass2, #spin2x, #spin2y, #spin2z, #rightAscension, #declination, #inclination, #psi, #luminosityDistance, #chi_eff, #totalMass, #geocentricGPSTime {
+  display: inline; 
+}
 /* -------------------------------- Images ------------------------------ */
 .image {
   display: block;
