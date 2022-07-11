@@ -57,9 +57,9 @@ function updateFunction(normalizedStrainData) {
     console.log({eventName});
     
     // ------------------------ Information Box ------------------------ //
-        document.getElementById('infoURL').innerHTML = eventURL;
-        console.log({eventURL});
-        
+    document.getElementById('infoURL').href = eventURL;
+    console.log({eventURL});
+
     // ----------------------------- Plotting ----------------------------- //
     // ----------------------- Strain vs. Time Plot ----------------------- //
     let layout0 = {
