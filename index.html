@@ -25,11 +25,11 @@
     <meta name="description" content="Our purpose is to explore the physics of gravitational waves via an analogy to audible sounds. Gravitational waves (GW) are ripples in the fabric of spacetime produced by colliding black holes, neutron stars, supernovae, and other astrophysical phenomena.">
     <meta name="author" content="Kevin Johansmeyer">
     <meta name="viewport" content="user-scalable=no, width=device-width"/> <!--mobile display -->
-    <meta property="og:title" content="Interactive Gravitational Wave Tool">
+    <meta property="og:title" content="Sonification of Gravitational Wave Events">
     <meta property="og:type" content="Sounds of Spacetime">
     <meta property="og:url" content="http://soundsofspacetime.org/">
-    <meta property="og:image" content="image.png">
-     
+    
+    <!-- Loads in Gravitational Wave Event Data -->
     <script src ="GWevents.js"></script>
 
     <link rel="icon" href="favicon.ico">
@@ -60,29 +60,23 @@
     </div>
              
     <!-- Citation: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp -->
-    <div id="mySidebar" class="sidebar">
+    <!-- <div id="mySidebar" class="sidebar"> -->
+    <div id="mySideNav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <a href="http://soundsofspacetime.org" target="_blank">Sounds of Spacetime</a>
-      <a href="https://www.soundsofspacetime.org/what-are-gws.html" target="_blank">What are Gravitational Waves?</a>
-      <a href="https://www.soundsofspacetime.org/about-gw-sounds.html" target="_blank">About Gravitational Wave Sounds</a>
-      <a href="https://www.soundsofspacetime.org/contributors.html" target="_blank">About</a>
-    </div>
+      <u><h2><a href="http://soundsofspacetime.org" target="_blank">Sounds of Spacetime</a></h2></u>
+      <div id="sideBarSubheading">
+        <a href="https://www.soundsofspacetime.org/what-are-gws.html" target="_blank">What are Gravitational Waves?</a>
+        <a href="https://www.soundsofspacetime.org/about-gw-sounds.html" target="_blank">About Gravitational Wave Sounds</a>
+        <a href="https://www.soundsofspacetime.org/contributors.html" target="_blank">About Sounds</a>
+      </div></br></br></br>
 
-    <!-- Information Box -->
-    <!-- <div id="infoBox">
-      Basic Binaries Sample Text: "Learn a bit about the gravitational-wave signal from two coalescing black holes,
-      including the different phases of the signal. We also explore the role of the total mass of the binary and the effect of neglecting the final merger of the two black holes."
-    </div><br> -->
-     
-    <!-- Select Event -->
-    <!-- Citation: https://www.codeproject.com/Questions/699630/How-to-display-the-specific-Text-on-change-of-HTML -->
-    <!-- <label for="selectEvent">Type of Event:</label>
-    <select name="selectEvent" id="selectEvent" onchange="getInfoText(this)">
-      <option value="basicBinaries">Basic Binaries</option>
-      <option value="circularBinaries">Circular Binaries</option>
-      <option value="spinningBinaries">Spinning Binaries</option>
-      <option value="ellipticalBinaries">Elliptical Binaries</option>     
-    </select> -->
+      <u><h2><a href="https://www.gw-openscience.org/" target="_blank">GWOSC</a></h2></u>
+      <div id="sideBarSubheading">
+        <a href="https://www.gw-openscience.org/eventapi/html/allevents/" target="_blank">Event List</a>
+        <a href="https://www.gw-openscience.org/eventapi/html/" target="_blank">Release List</a>
+        <a href="https://www.gw-openscience.org/links/" target="_blank">About GWOSC</a>
+      </div>
+    </div>
 
     <div class="uiButtons">
       <label for="selectGWEvent">Event:</label>
@@ -99,7 +93,19 @@
     <!-- Draw Plot -->
     <div id="strainVsTimePlot" class="plot"></div><br>
 
-    <div id="infoBox">
+    <!-- Information Box -->
+    <!-- <div id="infoBox" class="infoBox">
+      <a href="https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1" target="_blank">Click for more information about this event</a>
+      <div id="infoURL">https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1</div>
+    </div><br> -->
+
+    <div id="infoBox" class="infoBox">
+      <a href="https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1" target="_blank">Click for more information about this event</a>
+      <div id="infoURL">https://www.gw-openscience.org/eventapi/html/GWTC-3-confident/GW191113_071753/v1</div>
+    </div><br>
+
+
+    <div id="descriptionBox" class="infoBox">
       Plots are pre-generated in Python and exported to JavaScript. Parameter values corresponding to highest log_likelihood of posterior samples from <a href="https://www.gw-openscience.org/eventapi/html/allevents/" target="_blank">The Gravitational Wave 
       Open Science Center (GWOSC)</a> were used. <a href="https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/_l_a_l_sim_inspiral_8h.html#a51352d49a58e543e07ebb6be87fc80e7" target="_blank">LALSimulation's 
       XLALSimInspiralChooseTDWaveform() waveform generator</a>. The starting frequency for each event is set to 20 Hz, so the beginning of sounds may not be audible on some devices.

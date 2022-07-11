@@ -29,28 +29,13 @@ for(var j = 1; j < GWevents.length; j++) { //j = 1 since j = 0 already in dropdo
     option.appendChild(txt);
     option.setAttribute("value",GWevents[j].name);
     select.insertBefore(option,select.lastChild);
-    console.log(selectGWEvent.selectedIndex);
 }
 
 //=============================================================================//
 // ----------------------------- Information Box ----------------------------- //
 //=============================================================================//
 
-// // Citation: https://www.codeproject.com/Questions/699630/How-to-display-the-specific-Text-on-change-of-HTML
-// var infoBoxArray = new Array();
-// infoBoxArray[0] = "Basic Binaries Sample Text: Learn a bit about the gravitational-wave signal from two coalescing black holes, including the different phases of the signal. We also explore the role of the total mass of the binary and the effect of neglecting the final merger of the two black holes.";
-// infoBoxArray[1] = "Circular Binaries Sample Text: Here we focus on two compact objects (neutron stars or black holes) in a circular orbit that is shrinking due to the gravitational waves that are emitted. We expect this to be the most common LIGO source.";
-// infoBoxArray[2] = "Spinning Binaries Sample Text: Now we allow our individual stars to spin about each of their axes. Because the spin of a body affects its gravity in Einstein's theory, we will see that the gravitational-wave signal (and the corresponding sound) is likewise affected.";
-// infoBoxArray[3] = 'Elliptical Binaries Sample Text: When we allow the binary orbit to be elliptical the "sound" of the signal become even more interesting.';
-
-// function getInfoText(slction){
-//     var txtSelected = slction.selectedIndex;
-//     document.getElementById('infoBox').innerHTML = infoBoxArray[txtSelected];
-// }
-
 // // Set up time values
-// let NFixed = 17708 //number of indices for GW200316 (f0 = 20 Hz)
-// let NFixed = 59054 //number of indices for GW191219_163120 (f0 = 20 Hz)
 let NFixed = 60000 //rounded up number of indices for longest event (GW191219_163120 with f0 = 20 Hz)
 let tFixed = new Float32Array(NFixed).fill(0); //probably can define with time steps instead of defining with zeros
 tFixed[0] = 0; //fills t array with [0, deltat, 2*deltat, 3*deltat...]
@@ -62,14 +47,19 @@ for (let i = 1; i < NFixed; i++) {
 // ----------------------------- Update function ----------------------------- //
 //=============================================================================//
 // This entire function updates every time a slider is changed
-function updateFunction(normalizedStrainData) { 
+function updateFunction(normalizedStrainData) {
 
     //----------------- Importing Data From GWevents.js ------------------- //
     var data = GWevents[selectGWEvent.selectedIndex].data;
     var eventName = GWevents[selectGWEvent.selectedIndex].name;
+    var eventURL = GWevents[selectGWEvent.selectedIndex].url;
     var normalizedStrainData = new Float32Array(data);
-    console.log(eventName);
+    console.log({eventName});
     
+    // ------------------------ Information Box ------------------------ //
+        document.getElementById('infoURL').innerHTML = eventURL;
+        console.log({eventURL});
+        
     // ----------------------------- Plotting ----------------------------- //
     // ----------------------- Strain vs. Time Plot ----------------------- //
     let layout0 = {
@@ -159,7 +149,6 @@ function updateFunction(normalizedStrainData) {
         // Disables startAudioBtn for duration of sound
         // Citation: https://stackoverflow.com/questions/30558587/javascript-disable-button-and-reenable-it-after-5-seconds
         let tf = normalizedStrainData.length/sampleRate;
-        console.log({tf});
         document.getElementById("startAudioBtn").disabled = true;
             setTimeout(function(){document.getElementById("startAudioBtn").disabled = false;},1000*tf); //change disable time to reflect each event
         }
@@ -184,15 +173,15 @@ function updateFunction(normalizedStrainData) {
 } // ----------------------- End of Update Function ---------------------- //
 
 // --------------------------- Side Bar Functionality --------------------------- //
+// Citation: https://stackoverflow.com/questions/48066685/text-collapsing-on-side-menu-close
 function openNav() {
-    document.getElementById("mySidebar").style.width = "300px";
-    document.getElementById("main").style.marginLeft = "300px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-  }
+    document.getElementById("mySideNav").style.left = "0px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySideNav").style.left = "-400px";
+}
 
 // ------------------ Execute update Function for initial time ------------------ //
 updateFunction();
